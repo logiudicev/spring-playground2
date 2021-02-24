@@ -1,0 +1,45 @@
+For example, your endpoint would need to accept the following:
+
+    /your-endpoint?method=cash&price=12.05
+    /your-endpoint?item=CD&artist=Sondheim
+
+When accepting a Map parameter, it doesn't matter what the names of the querystring parameters are.
+
+#1 - /math/calculate
+
+In your spring-playground application, create an endpoint that takes GET requests to /math/calculate, which takes 3 query parameters:
+
+    operation: Which can be add, subtract, multiply, divide (optional)
+    x: A number (required)
+    y: A number (required)
+
+Examples
+
+/math/calculate?operation=add&x=4&y=6 should render the string 4 + 6 = 10
+
+/math/calculate?operation=multiply&x=4&y=6 should render the string 4 * 6 = 24
+
+/math/calculate?operation=subtract&x=4&y=6 should render the string 4 - 6 = -2
+
+/math/calculate?operation=divide&x=30&y=5 should render the string 30 / 5 = 6
+
+/math/calculate?x=30&y=5 should render the string 30 + 5 = 35
+#2 - /math/sum
+
+Create an endpoint that takes POST requests to /math/sum and passes multiple parameters n:
+Examples
+
+/math/sum?n=4&n=5&n=6 should render the string 4 + 5 + 6 = 15
+#3 - Extract a model
+
+Refactor the logic from /math/calculate into a MathService class.
+
+Remove the logic from /math/sum into a MathService class.
+Seeing it in Development
+
+You should be writing @WebMvc tests for this. But you may also want to see it running in your dev environment. Here are a few options:
+cURL
+
+curl -i "localhost:8080/math/calculate?operation=add&x=4&y=6"
+
+curl -i "localhost:8080/math/sum?n=4&n=5&n=6"
